@@ -1,0 +1,65 @@
+Link of Question:
+https://www.codechef.com/APRIL17/problems/DGTCNT
+Code in C++:
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+ll c;
+int a[10];
+void rec(ll l,ll r)
+{
+    int i,ru,h=0;
+  while(l<=r)
+     {
+        h=0;
+       int v[10];
+       for(i=0;i<10;i++)
+           v[i]=0;
+       ll num=l;
+        while(num!=0)
+           {
+             ru=num%10;
+             v[ru]+=1;
+             num/=10;
+           }
+         for(i=0;i<10;i++)
+             {
+              if(v[i]==a[i])
+                {
+                 h=-1;
+                 break;
+                }
+             }
+         if(h==0)
+           {
+            c++;
+           // cout<<"\n"<<l;
+           }
+        l++;
+       // cout<<"\n";
+     }
+}
+int main() {
+	int t,i,c0;
+	ll l,r;
+	cin>>t;
+	while(t--)
+	  {
+	    cin>>l>>r;
+	    c=c0=0;
+	    for(i=0;i<10;i++)
+	        {
+	         cin>>a[i];
+	         if(a[i]==0)
+	            c0++;
+	        }
+	       if(c0==10)
+	          {
+	            cout<<r-l+1<<"\n";
+	            continue;
+	          }
+	       rec(l,r);
+	    cout<<c<<"\n";;
+	  }// your code goes here
+	return 0;
+}
