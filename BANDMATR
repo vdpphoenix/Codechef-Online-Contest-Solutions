@@ -1,0 +1,68 @@
+Link of Question:
+https://www.codechef.com/MARCH17/problems/BANDMATR
+Code in C++:
+#include <bits/stdc++.h>
+using namespace std;
+bool a[500][500];
+int main() {
+	int t,i,j,n,n1,n0,k,m;
+	cin>>t;
+	while(t--)
+	{
+	 cin>>n;
+	 k=0;
+	 n1=n0=0;
+	 if(n==1)
+	   {
+	    cin>>a[0][0];
+	    cout<<0<<"\n";
+	   }
+	 else
+    	 {
+    	 for(i=0;i<n;i++)
+    	    for(j=0;j<n;j++)
+    	        {
+    	            cin>>a[i][j];
+	                  if(a[i][j]==0)
+	                     n0++;
+	                  else
+	                     n1++;
+	            }
+	          if(n0==n*n)
+	            {
+	             cout<<0<<"\n";
+	             continue;
+	            }
+	          else if(n1==n*n)
+	                 {
+	                   cout<<n-1<<"\n";
+	                   continue;
+	                 }
+	               else
+	                 {
+	                   m=n*n;
+	                       if(n1>n)
+	                         {
+	                           n1-=n;
+	                           m-=n;
+	                          while(n1>0&&m>0)
+	                               {
+	                                 if(n1<2*(n-k-1))
+	                                     {
+	                                        k++;
+	                                        break;
+	                                     }
+	                                  else
+	                                       {
+	                                        n1-=2*(n-k-1);
+	                                        m-=2*(n-k-1);
+	                                        k++;
+	                                        }
+	                               }
+	                         }
+	                 }
+	                  cout<<k<<"\n";
+	     }                                    
+	}// your code goes here
+	return 0;
+}
