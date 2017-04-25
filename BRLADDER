@@ -1,0 +1,48 @@
+Link of Question:
+https://www.codechef.com/LTIME46/problems/BRLADDER/
+Code in C++:
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll; 
+int main() {
+	ll i,j,k,l;
+	int q;
+	 cin>>q;
+	 for(i=0;i<q;i++)
+	    {
+	     cin>>k>>l;
+	     if(k==1)
+	       {
+	         if(l==3||l==2)
+	           cout<<"YES\n";
+	         else
+	           cout<<"NO\n";
+	       }
+	     else if(k==2)
+	          {
+	            if(l==1||l==4)
+	              cout<<"YES\n";
+	            else
+	              cout<<"NO\n";
+	          }
+	        else
+	        {
+	            if(k%2==1)
+	                {
+	                  if(k+2==l || k-2==l || k+1==l)
+	                      cout<<"YES\n";
+	                   else
+	                       cout<<"NO\n";
+	                }
+	           else
+	              {
+	                 if(k+2==l || k-2==l ||k-1==l)
+	                      cout<<"YES\n";
+	                else
+	                     cout<<"NO\n";
+	              }
+	        }
+	    }
+	  // your code goes here
+	return 0;
+}
