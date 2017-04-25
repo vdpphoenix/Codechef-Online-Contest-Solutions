@@ -1,0 +1,99 @@
+Link of Question:
+https://www.codechef.com/SEPT16/problems/CHFNFRN
+Code in C++:
+    #include <bits/stdc++.h>
+    #include <queue>
+    using namespace std;
+    int a[1001][1001];
+     
+    int main() {
+        int i,j,t,n,m,k,h,d=0,e=0;
+    	cin>>t;
+    	while(t--)
+    	{
+    	    e=0;
+    	  cin>>n>>m;
+    	  if(m==0)
+    	    {
+    	    if(n<=2)
+    	      cout<<"YES\n";
+    	     else
+    	      cout<<"NO\n";
+    	    }
+    	   else
+    	   {
+    	     for(i=1;i<=n;i++)
+    	         for(j=1;j<=n;j++)
+    	            a[i][j]=0;
+    	     for(i=0;i<m;i++)
+    	        {
+    	         cin>>k>>h;
+    	         a[k][h]=a[h][k]=1;
+    	        }
+    	       int *r=new int[n+1];
+    	       bool *x=new bool[n+1];
+    	       for(i=0;i<n+1;i++)
+    	           r[i]=x[i]=0;
+    	       for(j=1;j<=n;j++)
+    	         {
+    	            if(x[j]==1)
+    	              continue;
+    	            h=j;
+    	            x[j]=1;
+    	             queue <int> q;
+    	             while(!q.empty())
+    	                 q.pop();
+    	             q.push(h);
+    	             d=0;
+    	              r[h]=0;
+    	             while(!q.empty())
+    	              {
+    	                 h=q.front();
+    	                 q.pop();
+    	                 d=1;
+    	                  for(i=1;i<=n;i++)
+    	                     {
+    	                         if(i==h)
+    	                         continue;
+    	                        if(a[i][h]==0)
+    	                          {
+    	                          if(i==1)
+    	                            {
+    	                               e=r[h]-r[i]+1;
+    	                               if(e%2==1)
+    	                                   break;
+    	                             }
+    	                          else
+    	                             {
+    	                                if(r[i]>0)
+    	                                 {
+    	                                   e=r[h]-r[i]+1;
+    	                                  if(e%2==1)
+    	                                     break;
+    	                                  }
+    	                                 else
+    	                                  {
+    	                                  q.push(i);
+    	                                  x[i]=1;
+    	                                  r[i]=d+r[h];
+    	                                  }
+    	                             }
+    	                          }
+    	                        if(e%2==1)
+    	                           break;
+    	                     }
+    	                  if(e%2==1)
+    	                    break;
+    	               }
+    	             if(e%2==1)
+    	               break;
+    	           }
+    	       if(e%2==1)
+    	         cout<<"NO\n";
+    	         else
+    	         cout<<"YES\n";
+    	   }
+    	}// your code goes here
+    	return 0;
+    }
+     
