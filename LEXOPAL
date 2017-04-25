@@ -1,0 +1,38 @@
+Link of Question:
+https://www.codechef.com/SEPT16/problems/LEXOPAL
+CODE IN C++:
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int main() {
+	int i,t,j,k;
+	string s;
+	cin>>t;
+	while(t--)
+	{
+	  i=k=0;
+	  cin>>s;
+	  j=s.length()-1;
+	  for(i=0;i<j;i++,j--)
+	    {
+	     if(s[i]=='.'&&(s[j]>=97&&s[j]<=122))
+	        s[i]=s[j];
+	       else if(s[j]=='.'&&(s[i]>=97&&s[i]<=122))
+	               s[j]=s[i];
+	            else if(s[i]!=s[j])
+	                  {
+	                   k=1;
+	                   break;
+	                  }
+	                  else if(s[i]=='.'&&s[j]=='.')
+	                          s[i]=s[j]='a';
+	    }
+	    if(i==j&&s[i]=='.')
+	       s[i]='a';
+	    if(k==1)
+	      cout<<"-1\n";
+	      else
+	      cout<<s<<"\n";
+	}// your code goes here
+	return 0;
+}
