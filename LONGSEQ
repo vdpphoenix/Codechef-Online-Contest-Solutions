@@ -1,0 +1,39 @@
+Link of Question:
+https://www.codechef.com/SEPT16/problems/LONGSEQ/
+CODE IN C++:
+#include<bits/stdc++.h>
+using namespace std;
+ 
+int main() {
+	int t,i,c0,c1;
+	string n;
+	cin>>t;
+	while(t--)
+	{
+	  cin>>n;
+	  i=c0=c1=0;
+	  while(i<n.length())
+	  {
+	   if(n[i]=='0')
+	      c0++;
+	    else
+	      c1++;
+	    i++;
+	  }
+	  if((c0==1&&c1==0)||(c1==1&&c0==0))
+	      cout<<"Yes\n";
+	    else
+	   {
+	      if(c0==1&&c1==1)
+	       cout<<"Yes\n";
+	      else
+	          {
+	           if((c0>1&&c1==1)||(c0==1&&c1>1))
+	                 cout<<"Yes\n";
+	          else
+	              cout<<"No\n";
+	          }
+    	}
+	}// your code goes here
+	return 0;
+}
