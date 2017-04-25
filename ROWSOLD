@@ -1,0 +1,49 @@
+Link of Question:
+https://www.codechef.com/APRIL17/problems/ROWSOLD
+Code in C++:
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int main() {
+	long long t,i,j,k,c0,c1,c00;
+	cin>>t;
+	while(t--)
+	{
+	  string s;
+	  cin>>s;
+	  c00=c0=c1=0;
+	  long long y=0;
+	  for(i=0;i<s.length();i++)
+	     if(s[i]=='1')
+	       {
+	        k=i;
+	        c1++;
+	        break;
+	       }
+	  for(i=k+1;i<s.length();i++)
+	     {
+	       if(s[i]=='1')
+	         {
+	          if(c0>0)
+	             y+=c1+c0*c1;
+	          c1++;
+	          c0=0;
+	         }
+	       else
+	          {
+	           c0++;
+	           c00++;
+	          }
+	     }
+	     if(c0>0)
+	        y+=c1+c1*c0;
+	     if(c00==(s.length()-1) || c1==(s.length()-1))
+	       {
+	        cout<<"0\n";
+	        continue;
+	       }
+	     else
+	        cout<<y<<"\n";
+	}// your code goes here
+	return 0;
+}
