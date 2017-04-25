@@ -1,0 +1,85 @@
+Link of Question:
+https://www.codechef.com/OCT16/problems/BGQRS
+Code in C++:
+#include <bits/stdc++.h>
+using namespace std;
+long long a[100001];
+long long g=1;
+int h=0;
+void numb()
+{
+ int r;
+  while(g!=0)
+   {
+    r=g%10;
+    if(r==0)
+      {
+       h++;
+       g/=10;
+      }
+     else
+       break;
+   }
+   if(g==0)
+      g=1;
+}
+void fz(int l,int r)
+{
+ int i;
+ g=a[l];
+ numb();
+  for(i=l+1;i<=r;i++)
+     {
+       g*=a[i];
+       numb();
+     }
+}
+void fx(int l,int r,long long x)
+{
+ int i;
+ for(i=l;i<=r;i++)
+     a[i]*=x;
+}
+void fy(int l,int r,long long y)
+{
+  int i,j;
+  for(i=l,j=1;i<=r;i++,j++)
+     {
+      a[i]=j*y;
+     }
+}
+int main() {
+	int t,n,m,i,l,r,type;
+	long long x,y;
+	cin>>t;
+	while(t--)
+	{
+	  cin>>n>>m;
+	  a[0]=-1;
+	  for(i=1;i<=n;i++)
+	      cin>>a[i];
+	  for(i=1;i<=m;i++)
+	     {
+	         cin>>type;
+	         if(type==1)
+	            {
+	             cin>>l>>r>>x;
+	            fx(l,r,x);
+	            }
+	         if(type==2)
+	           {
+	             cin>>l>>r>>y;
+	             fy(l,r,y);
+	           }
+	         if(type==3)
+	           {
+	             cin>>l>>r;
+	             fz(l,r);
+	           }
+	           g=1;
+	     }
+	     cout<<h<<"\n";
+	     h=0;
+	}// your code goes here
+	return 0;
+}
