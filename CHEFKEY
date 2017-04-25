@@ -1,0 +1,20 @@
+Link of Question:
+https://www.codechef.com/OCT16/problems/CHEFKEY/
+Code in C++:
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int main() {
+	int t,c,i,j,n,m,h;
+	cin>>t;
+	while(t--)
+	{
+	 cin>>n>>m>>c;
+	 h=0;
+	 for(i=1;i<=n;i++)
+	     if(c%i==0&&((c/i)<=m))
+	        h++;
+	   cout<<h<<"\n";
+	}// your code goes here
+	return 0;
+}
