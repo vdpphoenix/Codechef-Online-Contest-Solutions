@@ -1,0 +1,132 @@
+Link of Question:
+https://www.codechef.com/APRIL17/problems/CLIQUED
+Code in C++:
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+ll d[100001];
+bool visit[100001];
+typedef pair <ll,ll> pr;
+void relax(ll u,ll v,ll w)
+{
+  if(d[v]>d[u]+w)
+    d[v]=d[u]+w;
+}
+void Dijkstra(multiset <pr> e,ll n,vector < vector <pr> > a,ll x,ll k)
+{
+    pr gf;
+    ll f,w,i,j;
+  while(!e.empty())
+     {
+      gf=*e.begin();
+      e.erase(e.begin());
+      f=gf.second;
+      if(visit[f]==1)
+         continue;
+      visit[f]=1;
+      for(i=0;i<a[f].size();i++)
+         {
+             w=a[f][i].second;
+             relax(f,w,a[f][i].first);
+             e.insert({d[w],w});
+         }
+     }
+}
+int main() {
+	ll t,n,k,x,m,s,p,q,i,j,mpi;
+	ll c,mp;
+	cin>>t;
+	while(t--)
+	{
+	     cin>>n>>k>>x>>m>>s;
+    	 multiset <pr> e;
+    	 pr gf;
+    	 mp=LLONG_MAX;
+    	 vector <pr> temp;
+    	 vector <vector <pr> > a(n,temp);
+    	 //bool *visit=new visit[n];
+    	 for(i=0;i<n;i++)
+    	    {
+	         visit[i]=0;
+	         d[i]=LLONG_MAX;
+    	    }
+    	  d[s-1]=0;
+    	  if(s<=k)
+    	    {
+    	      e.insert({0,s-1});
+    	      for(i=0;i<k;i++)
+    	         {
+    	           if(i==(s-1))
+    	             continue;
+    	           else
+    	             {
+    	               d[i]=x;
+    	               e.insert({d[i],i});
+    	             }
+    	         }
+    	       for(i=0;i<m;i++)
+    	          {
+    	            cin>>p>>q>>c;
+    	            gf.first=c;
+    	            gf.second=q-1;
+    	            a[p-1].push_back(gf);
+    	            gf.second=p-1;
+    	            a[q-1].push_back(gf);
+    	          }
+    	           for(i=0;i<n;i++)
+    	                visit[i]=0;
+    	          Dijkstra(e,n,a,x,k);
+    	    }
+    	  else
+    	    {
+    	      e.insert({0,s-1});
+    	      for(i=0;i<m;i++)
+    	         {
+    	           cin>>p>>q>>c;
+    	           gf.first=c;
+    	           gf.second=q-1;
+    	           a[p-1].push_back(gf);
+    	           gf.second=p-1;
+    	           a[q-1].push_back(gf);;
+    	         }
+    	      while(!e.empty())
+    	          {
+    	            gf=*e.begin();
+    	            e.erase(e.begin());
+    	            p=gf.second;
+    	            if(visit[p]==1)
+    	               continue;
+    	            visit[p]=1;
+    	            for(i=0;i<a[p].size();i++)
+    	               {
+    	                q=a[p][i].second;
+    	                if(visit[q]==1)
+    	                   continue;
+    	                relax(p,q,a[p][i].first);
+    	                e.insert({d[q],q});
+    	               }
+    	               if(p<k && d[p]<mp)
+    	                 {
+    	                   mp=d[p];
+    	                   mpi=p;
+    	                 }
+    	          }
+    	          for(i=0;i<k;i++)
+    	             {
+    	               if(i==mpi)
+    	                 continue;
+    	                gf.first=x;
+    	               gf.second=i;
+    	               a[mpi].push_back(gf);
+    	             }
+    	             e.insert({mp,mpi});
+    	             for(i=0;i<n;i++)
+    	                visit[i]=0;
+    	             Dijkstra(e,n,a,x,k);
+    	    }
+    	    for(i=0;i<n;i++)
+    	       cout<<d[i]<<" ";
+    	       cout<<"\n";
+	}// your code goes here
+	return 0;
+}
