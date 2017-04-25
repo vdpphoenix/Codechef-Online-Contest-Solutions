@@ -1,0 +1,19 @@
+Link of Question:
+https://www.codechef.com/OCT16/problems/CHDOGS
+Code in C++:
+#include <bits/stdc++.h>
+#include <cmath>
+using namespace std;
+ 
+int main() {
+	long long t,s,v;double k;
+	cin>>t;
+	while(t--)
+	{
+	 cin>>s>>v;
+	 k=0;
+	 k=(double)(2*s)/(double)(3*v);
+     cout<<fixed<<setprecision(9)<<k<<"\n";
+	}// your code goes here
+	return 0;
+}
