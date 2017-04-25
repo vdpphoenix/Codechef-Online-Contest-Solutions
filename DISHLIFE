@@ -1,0 +1,50 @@
+Link of Question:
+https://www.codechef.com/APRIL17/problems/DISHLIFE
+Code in C++:
+    #include <bits/stdc++.h>
+    using namespace std;
+    bool visit[100001];
+    int main() {
+    	int t,n,k,i,j,p,x,h;
+    	cin>>t;
+    	while(t--)
+    	{
+    	  cin>>n>>k;
+    	  vector <int> d[n];
+    	  for(i=1;i<=k;i++)
+    	      visit[i]=0;
+    	      for(i=0;i<n;i++)
+    	         {
+    	          cin>>p;
+    	          for(j=0;j<p;j++)
+    	             {
+    	              cin>>x;
+    	              d[i].push_back(x);
+    	             }
+    	         }
+    	         x=0;
+    	  for(i=0;i<n;i++)
+    	     {
+    	       for(j=0;j<d[i].size();j++)
+    	          {
+    	            if(visit[d[i][j]]!=1)
+    	              {
+    	                visit[d[i][j]]=1;
+    	                x++;
+    	              }
+    	          }
+    	        if(x!=k && i<(n-1))
+    	           continue;
+    	        else if(x==k && i==(n-1))
+    	                 cout<<"all\n";
+    	        else if(x!=k && i==(n-1))
+    	               cout<<"sad\n";
+    	            else if(x==k && i<(n-1))
+    	                  {
+    	                   cout<<"some\n";
+    	                   break;
+    	                  }
+    	     }
+    	}// your code goes here
+    	return 0;
+    } 
